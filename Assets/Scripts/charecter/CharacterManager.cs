@@ -3,9 +3,13 @@ namespace SP
 {
     public class CharacterManager : MonoBehaviour
     {
-        void Awake()
+        protected virtual void Awake()
         {
             DontDestroyOnLoad(gameObject);
+        }
+        protected virtual void Update()
+        {
+
         }
     }
 }

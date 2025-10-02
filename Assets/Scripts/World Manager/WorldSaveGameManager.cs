@@ -6,7 +6,7 @@ namespace SP
     public class WorldSaveGameManager : MonoBehaviour
     {
         public static WorldSaveGameManager Instance;
-
+        private int _gameSceneIndex = 1;
         void Awake()
         {
             if (Instance == null)
@@ -21,8 +21,13 @@ namespace SP
         }
         public IEnumerator LoadGameScene()
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(_gameSceneIndex);
             yield return null;
+        }
+
+        public int GetGameSceneIndex()
+        {
+            return _gameSceneIndex;
         }
     }
 }

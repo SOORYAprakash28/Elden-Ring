@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: c5af9d4deecc59c4db23a02cc5a96863, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.79574
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c5af9d4deecc59c4db23a02cc5a96863, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c5af9d4deecc59c4db23a02cc5a96863, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.79574
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c5af9d4deecc59c4db23a02cc5a96863, type: 3}
       propertyPath: m_LocalRotation.w
@@ -61,7 +61,10 @@ PrefabInstance:
       addedObject: {fileID: -3634612738206178461}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c5af9d4deecc59c4db23a02cc5a96863, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4182092260775749653}
+      addedObject: {fileID: -7207041732571552502}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c5af9d4deecc59c4db23a02cc5a96863, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9065477206739929416}
   m_SourcePrefab: {fileID: 100100000, guid: c5af9d4deecc59c4db23a02cc5a96863, type: 3}
 --- !u!1 &3713302577918444902 stripped
 GameObject:
@@ -93,7 +96,7 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
---- !u!114 &4182092260775749653
+--- !u!114 &-7207041732571552502
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,6 +105,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 3713302577918444902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3760c43258c6954c814fb3fc321c035, type: 3}
+  m_Script: {fileID: 11500000, guid: 58634fa729b9c4846b7d23ef895a37cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9065477206739929416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3713302577918444902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34a1d4c4da4c09c4f88faedc98f8df01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
