@@ -13,7 +13,27 @@ namespace SP
         protected override void Update()
         {
             base.Update();
+            if (!IsOwner)
+                return;
+
             playerLocomotionManager.HandelAllMovement();
+        }
+
+        protected override void LateUpdate()
+        {
+            if (!IsOwner)
+                return;
+
+            base.LateUpdate();
+            PlayerCamera.Instance.HandleAllCameraActions();
+        }
+        public override void OnNetworkSpawn()
+        {
+            base.OnNetworkSpawn();
+            if (IsOwner)
+            {
+                PlayerCamera.Instance.player = this;
+            }
         }
     }
 }
