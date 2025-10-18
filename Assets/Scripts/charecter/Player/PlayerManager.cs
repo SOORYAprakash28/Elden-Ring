@@ -3,12 +3,14 @@ namespace SP
 {
     public class PlayerManager : CharacterManager
     {
-        PlayerLocomotionManager playerLocomotionManager;
+        [HideInInspector] public PlayerAnimationManager playerAnimationManager;
+        [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
         protected override void Awake()
         {
             base.Awake();
             // this can have the player specific logic
             playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
+            playerAnimationManager = GetComponent<PlayerAnimationManager>();
         }
         protected override void Update()
         {
@@ -33,6 +35,7 @@ namespace SP
             if (IsOwner)
             {
                 PlayerCamera.Instance.player = this;
+                PlayerInputManager.Instance.player = this;
             }
         }
     }

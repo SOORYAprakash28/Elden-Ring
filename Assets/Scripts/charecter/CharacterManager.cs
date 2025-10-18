@@ -4,12 +4,14 @@ namespace SP
 {
     public class CharacterManager : NetworkBehaviour
     {
-        public CharacterNetworkManager characterNetworkManager;
-        public CharacterController characterController;
+        [HideInInspector] public CharacterNetworkManager characterNetworkManager;
+        [HideInInspector] public Animator animator;
+        [HideInInspector] public CharacterController characterController;
         protected virtual void Awake()
         {
             DontDestroyOnLoad(gameObject);
             characterController = GetComponent<CharacterController>();
+            animator = GetComponent<Animator>();
             characterNetworkManager = GetComponent<CharacterNetworkManager>();
         }
         protected virtual void Update()

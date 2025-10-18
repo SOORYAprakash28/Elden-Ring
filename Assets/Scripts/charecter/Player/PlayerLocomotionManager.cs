@@ -12,36 +12,55 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     [SerializeField] float _walkingSpeed = 2;
     [SerializeField] float _runningSpeed = 5;
     private Vector3 moveDirection;
-    void Awake()
+    protected override void Awake()
     {
         base.Awake();
         player = GetComponent<PlayerManager>();
+    }
+    protected override void Update()
+    {
+        base.Update();
+        if (player.IsOwner)
+        {
+            player.characterNetworkManager.HorizontalMovement.Value = HorizantalMovement;
+            player.characterNetworkManager.VerticalMovement.Value = VerticleMovement;
+            player.characterNetworkManager.MoveAmount.Value = moveAmount;
+        }
+        else
+        {
+            HorizantalMovement = player.characterNetworkManager.HorizontalMovement.Value;
+            VerticleMovement = player.characterNetworkManager.VerticalMovement.Value;
+            moveAmount = player.characterNetworkManager.MoveAmount.Value;
+
+            player.playerAnimationManager.UpdateAnimationMovementParameter(0, moveAmount);
+        }
     }
     public void HandelAllMovement()
     {
         PlayerGroundedMovement();
         HandelRotation();
     }
-    private void GetHorizantalAndVerticalMovement()
+    private void GetMovementValues()
     {
-        HorizantalMovement = PlayerInputManager.instance.horizontalInput;
-        VerticleMovement = PlayerInputManager.instance.verticleInput;
+        HorizantalMovement = PlayerInputManager.Instance.horizontalInput;
+        VerticleMovement = PlayerInputManager.Instance.verticleInput;
+        moveAmount = PlayerInputManager.Instance.moveAmount;
     }
     public void PlayerGroundedMovement()
     {
         // move direction is based on camera
-        GetHorizantalAndVerticalMovement();
+        GetMovementValues();
         moveDirection = PlayerCamera.Instance.transform.forward * VerticleMovement;
         moveDirection += PlayerCamera.Instance.transform.right * HorizantalMovement;
         moveDirection.Normalize();
         moveDirection.y = 0f;
 
-        if (PlayerInputManager.instance.moveAmount > 0.5f)
+        if (PlayerInputManager.Instance.moveAmount > 0.5f)
         {
             // Moving in a Running speed
             player.characterController.Move(moveDirection * _runningSpeed * Time.deltaTime);
         }
-        else if (PlayerInputManager.instance.moveAmount <= 0.5f)
+        else if (PlayerInputManager.Instance.moveAmount <= 0.5f)
         {
             // Moving in a walking speed
             player.characterController.Move(moveDirection * _walkingSpeed * Time.deltaTime);

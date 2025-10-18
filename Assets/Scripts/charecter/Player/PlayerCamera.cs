@@ -61,8 +61,8 @@ namespace SP
         }
         private void HandleRotation()
         {
-            _leftAndRightLookAngle += PlayerInputManager.instance.CameraHorizontalInput * _laftAndRightRotationSpeed * Time.deltaTime;
-            _upAndDownLookAngle -= PlayerInputManager.instance.CameraVerticleInput * _upAndDownRotationSpeed * Time.deltaTime;
+            _leftAndRightLookAngle += PlayerInputManager.Instance.CameraHorizontalInput * _laftAndRightRotationSpeed * Time.deltaTime;
+            _upAndDownLookAngle -= PlayerInputManager.Instance.CameraVerticleInput * _upAndDownRotationSpeed * Time.deltaTime;
             _upAndDownLookAngle = Mathf.Clamp(_upAndDownLookAngle, _minimumPivote, _maximumPivote);
 
             Quaternion targetRotation;

@@ -4,7 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerInputManager : MonoBehaviour
 {
-    public static PlayerInputManager instance;
+    public static PlayerInputManager Instance;
+    public PlayerManager player;
     InputSystem_Actions inputActions;
     [Header("Movement input")]
     [SerializeField] Vector2 moveInput;
@@ -18,9 +19,9 @@ public class PlayerInputManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -32,7 +33,7 @@ public class PlayerInputManager : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
-        instance.enabled = false;
+        Instance.enabled = false;
         SceneManager.activeSceneChanged += OnSceneChanged;
     }
 
@@ -41,11 +42,11 @@ public class PlayerInputManager : MonoBehaviour
         // inputs are only allowed in the game scene
         if (arg1.buildIndex == WorldSaveGameManager.Instance.GetGameSceneIndex())
         {
-            instance.enabled = true;
+            Instance.enabled = true;
         }
         else
         {
-            instance.enabled = false;
+            Instance.enabled = false;
         }
     }
 
@@ -108,6 +109,9 @@ public class PlayerInputManager : MonoBehaviour
         {
             moveAmount = 1f;
         }
+        if (player == null) return;
+        // becouse ur camera is not locked to the player, so we need to calculate the movement direction based on the camera rotation
+        player.playerAnimationManager.UpdateAnimationMovementParameter(0, moveAmount);
     }
     private void HandleCameraMovementInput()
     {
